@@ -1,13 +1,122 @@
 import Navbar from "./Navbar";
 
 const AddCoffee = () => {
+  const handleAddCoffee = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const name = form.name.value;
+    const chef = form.chef.value;
+    const supplier = form.supplier.value;
+    const taste = form.taste.value;
+    const category = form.category.value;
+    const details = form.details.value;
+    const photo = form.photo.value;
+    const addCoffee = { name, chef, supplier, taste, category, details, photo };
+    console.log(addCoffee);
+  };
   return (
-    <div className="text-center my-8 mx-auto max-w-6xl">
+    <div className="text-center my-8 mx-auto max-w-6xl px-3">
       <div>
         <h1 className="text-5xl font-extrabold">Espresso Emporium</h1>
         <Navbar />
       </div>
-      <h2 className="text-3xl font-bold">Add a Coffee</h2>
+      <div className=" mx-auto p-12 md:py-12 md:px-28 bg-[#F4F3F0]">
+        <h2 className="text-3xl font-bold capitalize my-8">Add new coffee</h2>
+        <p className="px-16">
+          It is a long established fact that a reader will be distraceted by the
+          readable content of a page when looking at its layout. The point of
+          using Lorem Ipsum is that it has a more-or-less normal distribution of
+          letters, as opposed to using Content here.
+        </p>
+        <form onSubmit={handleAddCoffee}>
+          {/* Form first row */}
+          <div className="flex gap-5 mb-5 flex-col md:flex-row">
+            <div className="form-control w-full">
+              <label className="label">Name</label>
+              <input
+                type="text"
+                name="name"
+                placeholder="Enter coffee name..."
+                className="input input-bordered"
+                required
+              />
+            </div>
+            <div className="form-control w-full">
+              <label className="label">Chef</label>
+              <input
+                type="text"
+                name="chef"
+                placeholder="Enter coffee chef..."
+                className="input input-bordered"
+                required
+              />
+            </div>
+          </div>
+          {/* Form second row */}
+          <div className="flex gap-5 mb-5 flex-col md:flex-row">
+            <div className="form-control w-full">
+              <label className="label">Supplier</label>
+              <input
+                type="text"
+                name="supplier"
+                placeholder="Enter coffee supplier..."
+                className="input input-bordered"
+                required
+              />
+            </div>
+            <div className="form-control w-full">
+              <label className="label">Taste</label>
+              <input
+                type="text"
+                name="taste"
+                placeholder="Enter coffee taste..."
+                className="input input-bordered"
+                required
+              />
+            </div>
+          </div>
+          {/* Form third row */}
+          <div className="flex gap-5 mb-5 flex-col md:flex-row">
+            <div className="form-control w-full">
+              <label className="label">Category</label>
+              <input
+                type="text"
+                name="category"
+                placeholder="Enter coffee category..."
+                className="input input-bordered"
+                required
+              />
+            </div>
+            <div className="form-control w-full">
+              <label className="label">Details</label>
+              <input
+                type="text"
+                name="details"
+                placeholder="Enter coffee details..."
+                className="input input-bordered"
+                required
+              />
+            </div>
+          </div>
+          {/* Form forth row */}
+          <div className="form-control mb-5">
+            <label className="label">Photo</label>
+            <input
+              type="text"
+              name="photo"
+              placeholder="Enter photo url..."
+              className="input input-bordered"
+              required
+            />
+          </div>
+          {/* form submit button */}
+          <div className="form-control mt-6">
+            <button className="btn bg-[#D2B48C] text-black hover:text-white">
+              Add Coffee
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 };
