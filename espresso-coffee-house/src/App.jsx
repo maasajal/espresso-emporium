@@ -2,9 +2,13 @@ import { Link, useLoaderData } from "react-router-dom";
 import "./App.css";
 import Navbar from "./components/Navbar";
 import CoffeeCard from "./components/CoffeeCard";
+import { useState } from "react";
 
 function App() {
-  const coffeeCollection = useLoaderData();
+  const coffees = useLoaderData();
+  const [coffeeCollection, setCoffee] = useState(coffees);
+  const reversedCoffee = [...coffeeCollection].reverse();
+
   return (
     <div className="mx-auto max-w-6xl">
       <div className="text-center my-8">
@@ -20,8 +24,13 @@ function App() {
           </Link>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {coffeeCollection.map((coffee) => (
-            <CoffeeCard key={coffee._id} coffee={coffee} />
+          {reversedCoffee.map((coffee) => (
+            <CoffeeCard
+              key={coffee._id}
+              coffee={coffee}
+              setCoffee={setCoffee}
+              coffeeCollection={coffeeCollection}
+            />
           ))}
         </div>
       </div>

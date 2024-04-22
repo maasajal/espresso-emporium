@@ -1,6 +1,6 @@
 const express = require("express");
 const cors = require("cors");
-const { MongoClient, ServerApiVersion } = require("mongodb");
+const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
 require("dotenv").config();
 
 const app = express();
@@ -26,11 +26,11 @@ const run = async () => {
     // Create database and collection as table
     const coffeeCollection = client.db("coffeeDB").collection("coffee");
 
-    app.get("/coffee", async (req, res) =>{
-        const cursor = coffeeCollection.find();
-        const result = await cursor.toArray();
-        res.send(result)
-    })
+    app.get("/coffee", async (req, res) => {
+      const cursor = coffeeCollection.find();
+      const result = await cursor.toArray();
+      res.send(result);
+    });
 
     app.post("/coffee", async (req, res) => {
       const newCoffee = req.body; // get new coffee from client site
@@ -40,6 +40,13 @@ const run = async () => {
       res.send(result);
     });
 
+    app.delete("/coffee/:id", async (req, res) => {
+      const id = req.params.id;
+      console.log("Deleted Coffee", id);
+      const query = { _id: new ObjectId(id) };
+      const result = await coffeeCollection.deleteOne(query);
+      res.send(result);
+    });
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });
     console.log(
