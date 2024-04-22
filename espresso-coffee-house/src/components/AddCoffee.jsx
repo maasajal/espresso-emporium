@@ -1,7 +1,8 @@
 import Navbar from "./Navbar";
+import Swal from "sweetalert2";
 
 const AddCoffee = () => {
-  const handleAddCoffee = (e) => {
+  const handleAddCoffee = async (e) => {
     e.preventDefault();
     const form = e.target;
     const name = form.name.value;
@@ -13,7 +14,36 @@ const AddCoffee = () => {
     const photo = form.photo.value;
     const addCoffee = { name, chef, supplier, taste, category, details, photo };
     console.log(addCoffee);
+
+    try {
+      const response = await fetch("http://localhost:3333/coffee", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(addCoffee),
+      });
+      const data = await response.json();
+      //   console.log(data);
+      if (data.insertedId) {
+        Swal.fire({
+          title: "Success!",
+          text: "New coffee added successfully!",
+          icon: "success",
+          confirmButtonText: "Cool",
+        });
+      }
+    } catch (error) {
+      console.error("Error", error);
+      Swal.fire({
+        title: "Error!",
+        text: "An error occurred while adding the coffee. Please try again later.",
+        icon: "error",
+        confirmButtonText: "Okay",
+      });
+    }
   };
+
   return (
     <div className="text-center my-8 mx-auto max-w-6xl px-3">
       <div>
@@ -35,6 +65,7 @@ const AddCoffee = () => {
               <label className="label">Name</label>
               <input
                 type="text"
+                id="name"
                 name="name"
                 placeholder="Enter coffee name..."
                 className="input input-bordered"
@@ -45,6 +76,7 @@ const AddCoffee = () => {
               <label className="label">Chef</label>
               <input
                 type="text"
+                id="chef"
                 name="chef"
                 placeholder="Enter coffee chef..."
                 className="input input-bordered"
@@ -58,6 +90,7 @@ const AddCoffee = () => {
               <label className="label">Supplier</label>
               <input
                 type="text"
+                id="supplier"
                 name="supplier"
                 placeholder="Enter coffee supplier..."
                 className="input input-bordered"
@@ -68,6 +101,7 @@ const AddCoffee = () => {
               <label className="label">Taste</label>
               <input
                 type="text"
+                id="taste"
                 name="taste"
                 placeholder="Enter coffee taste..."
                 className="input input-bordered"
@@ -81,6 +115,7 @@ const AddCoffee = () => {
               <label className="label">Category</label>
               <input
                 type="text"
+                id="category"
                 name="category"
                 placeholder="Enter coffee category..."
                 className="input input-bordered"
@@ -91,6 +126,7 @@ const AddCoffee = () => {
               <label className="label">Details</label>
               <input
                 type="text"
+                id="details"
                 name="details"
                 placeholder="Enter coffee details..."
                 className="input input-bordered"
@@ -103,6 +139,7 @@ const AddCoffee = () => {
             <label className="label">Photo</label>
             <input
               type="text"
+              id="photo"
               name="photo"
               placeholder="Enter photo url..."
               className="input input-bordered"
