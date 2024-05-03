@@ -60,9 +60,11 @@ const CoffeeCard = ({ coffee, coffeeCollection, setCoffee }) => {
             </div>
             <div className="card-actions justify-end">
               <div className="join join-vertical space-y-4">
-                <button className="btn  bg-[#D2B48C]">
-                  <FaEye className="text-white text-2xl" />
-                </button>
+                <Link to={`/coffee/${_id}`}>
+                  <button className="btn bg-[#D2B48C]">
+                    <FaEye className="text-white text-2xl" />
+                  </button>
+                </Link>
                 <button className="btn bg-[#3C393B]">
                   <Link to={`/updateCoffee/${_id}`}>
                     <FaEdit className="text-white text-2xl" />

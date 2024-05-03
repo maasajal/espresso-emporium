@@ -1,5 +1,6 @@
-import { useLoaderData } from "react-router-dom";
-import Navbar from "./Navbar";
+import { Link, useLoaderData } from "react-router-dom";
+import Navbar from "../components/Navbar";
+import { FaArrowLeft } from "react-icons/fa";
 
 const UpdateCoffee = () => {
   const updateCoffee = useLoaderData();
@@ -48,9 +49,10 @@ const UpdateCoffee = () => {
 
   return (
     <div className="text-center my-8 mx-auto max-w-6xl px-3">
-      <div>
-        <h1 className="text-5xl font-extrabold">Espresso Emporium</h1>
-        <Navbar />
+      <div className="py-8">
+        <Link className="flex items-center gap-4" to="/">
+          <FaArrowLeft /> <span>Back to home</span>
+        </Link>
       </div>
       <div className=" mx-auto p-12 md:py-12 md:px-28 bg-[#F4F3F0]">
         <h2 className="text-3xl font-bold capitalize my-8">Update coffee</h2>

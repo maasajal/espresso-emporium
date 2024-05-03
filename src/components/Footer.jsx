@@ -12,7 +12,7 @@ const Footer = () => {
         className="pt-28 pb-10 text-[#1B1A1A] px-5"
         style={{ backgroundImage: `url(${footerTopImg})` }}
       >
-        <div className="footer max-w-7xl mx-auto">
+        <div className="footer max-w-6xl mx-auto">
           <aside>
             <img className="w-20" src={logo} alt="Espresso Emporium" />
             <h1 className="text-4xl font-extrabold">Espresso Emporium</h1>

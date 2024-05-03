@@ -1,5 +1,6 @@
-import Navbar from "./Navbar";
+import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
+import { FaArrowLeft } from "react-icons/fa";
 
 const AddCoffee = () => {
   const handleAddCoffee = async (e) => {
@@ -45,12 +46,14 @@ const AddCoffee = () => {
   };
 
   return (
-    <div className="text-center my-8 mx-auto max-w-6xl px-3">
-      <div>
-        <h1 className="text-5xl font-extrabold">Espresso Emporium</h1>
-        <Navbar />
+    <div className=" my-8 mx-auto max-w-6xl px-3">
+      <div className="py-8">
+        <Link className="flex items-center gap-4" to="/">
+          {" "}
+          <FaArrowLeft /> <span>Back to home</span>
+        </Link>
       </div>
-      <div className=" mx-auto p-12 md:py-12 md:px-28 bg-[#F4F3F0]">
+      <div className="mx-auto p-12 md:py-12 md:px-28 bg-[#F4F3F0] text-center">
         <h2 className="text-3xl font-bold capitalize my-8">Add new coffee</h2>
         <p className="px-16">
           It is a long established fact that a reader will be distraceted by the
