@@ -9,7 +9,7 @@ const Footer = () => {
   return (
     <div className="mt-28">
       <footer
-        className="pt-28 pb-10 text-[#1B1A1A]"
+        className="pt-28 pb-10 text-[#1B1A1A] px-5"
         style={{ backgroundImage: `url(${footerTopImg})` }}
       >
         <div className="footer max-w-7xl mx-auto">

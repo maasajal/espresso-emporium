@@ -28,7 +28,7 @@ const Banner = () => {
         </div>
       </div>
       <div className="bg-[#ECEAE3] py-8">
-        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="max-w-6xl mx-auto px-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           <div className="space-y-5">
             <div>
               <img src={img1} alt="" />
