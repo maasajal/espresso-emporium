@@ -7,33 +7,45 @@ const CoffeeCard = ({ coffee, coffeeCollection, setCoffee }) => {
   const { _id, name, chef, taste, photo } = coffee;
 
   const handleDelete = async (id) => {
-    try {
-      const response = await fetch(`http://localhost:3333/coffee/${id}`, {
-        method: "DELETE",
-      });
-      const data = await response.json();
-      console.log(data);
+    const result = await Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    });
 
-      if (data.deletedCount > 0) {
-        const remainingCoffee = await coffeeCollection.filter(
-          (cof) => cof._id !== id
-        );
-        setCoffee(remainingCoffee);
+    if (result.isConfirmed) {
+      try {
+        const response = await fetch(`http://localhost:3333/coffee/${id}`, {
+          method: "DELETE",
+        });
+        const data = await response.json();
+        console.log(data);
+
+        if (data.deletedCount > 0) {
+          const remainingCoffee = await coffeeCollection.filter(
+            (cof) => cof._id !== id
+          );
+          setCoffee(remainingCoffee);
+          Swal.fire({
+            title: "Delete Success!",
+            text: "Coffee deleted successfully!",
+            icon: "success",
+            confirmButtonText: "Back",
+          });
+        }
+      } catch (error) {
+        console.error("Error", error);
         Swal.fire({
-          title: "Success!",
-          text: "Coffee deleted successfully!",
-          icon: "success",
-          confirmButtonText: "Back",
+          title: "Error!",
+          text: "An error occurred while adding the coffee. Please try again later.",
+          icon: "error",
+          confirmButtonText: "Okay",
         });
       }
-    } catch (error) {
-      console.error("Error", error);
-      Swal.fire({
-        title: "Error!",
-        text: "An error occurred while adding the coffee. Please try again later.",
-        icon: "error",
-        confirmButtonText: "Okay",
-      });
     }
   };
   return (

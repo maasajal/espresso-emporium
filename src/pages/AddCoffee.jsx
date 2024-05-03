@@ -92,7 +92,7 @@ const AddCoffee = () => {
             <div className="form-control w-full">
               <label className="label">Price</label>
               <input
-                type="number"
+                type="text"
                 id="price"
                 name="price"
                 placeholder="Enter coffee price..."
