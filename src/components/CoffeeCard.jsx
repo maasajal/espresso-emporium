@@ -9,7 +9,7 @@ const CoffeeCard = ({ coffee, coffeeCollection, setCoffee }) => {
   const handleDelete = async (id) => {
     const result = await Swal.fire({
       title: "Are you sure?",
-      text: "You won't be able to revert this!",
+      text: "Are you sure that you want to delete it?",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
@@ -31,17 +31,17 @@ const CoffeeCard = ({ coffee, coffeeCollection, setCoffee }) => {
           );
           setCoffee(remainingCoffee);
           Swal.fire({
-            title: "Delete Success!",
+            title: "Good Lick !!!",
             text: "Coffee deleted successfully!",
             icon: "success",
-            confirmButtonText: "Back",
+            confirmButtonText: "OK",
           });
         }
       } catch (error) {
         console.error("Error", error);
         Swal.fire({
           title: "Error!",
-          text: "An error occurred while adding the coffee. Please try again later.",
+          text: "An error occurred while deleting the coffee. Please try again later.",
           icon: "error",
           confirmButtonText: "Okay",
         });
@@ -77,11 +77,11 @@ const CoffeeCard = ({ coffee, coffeeCollection, setCoffee }) => {
                     <FaEye className="text-white text-2xl" />
                   </button>
                 </Link>
-                <button className="btn bg-[#3C393B]">
-                  <Link to={`/updateCoffee/${_id}`}>
+                <Link to={`/updateCoffee/${_id}`}>
+                  <button className="btn bg-[#3C393B]">
                     <FaEdit className="text-white text-2xl" />
-                  </Link>
-                </button>
+                  </button>
+                </Link>
                 <button
                   onClick={() => handleDelete(_id)}
                   className="btn bg-[#EA4744]"

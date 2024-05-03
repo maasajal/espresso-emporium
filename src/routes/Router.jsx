@@ -4,6 +4,7 @@ import AddCoffee from "../pages/AddCoffee";
 import UpdateCoffee from "../pages/UpdateCoffee";
 import Main from "../layouts/Main";
 import ViewCoffee from "../pages/ViewCoffee";
+import ErrorPage from "../pages/ErrorPage";
 
 const router = createBrowserRouter([
   {
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
         element: <UpdateCoffee />,
         loader: ({ params }) =>
           fetch(`http://localhost:3333/coffee/${params.id}`),
+      },
+      {
+        path: "/*",
+        element: <ErrorPage />,
       },
     ],
   },
